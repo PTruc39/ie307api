@@ -111,6 +111,21 @@ namespace MangaApi.Controllers
             }
         }
 
+        [Route("api/user/DeleteFavorite")]
+        [HttpPost]
+        public IHttpActionResult DeleteFavorite(favorite newf)
+        {
+            try
+            {
+                int kq = Database.DeleteFavorite(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
 
         [Route("api/manga/GetMangaList")]
         [HttpGet]
