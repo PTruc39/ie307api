@@ -159,6 +159,14 @@ public class Database
         int kq = int.Parse(Exec_Command("AddFavorite", param).ToString());
         return kq;
     }
+    public static int DeleteFavorite(favorite newfavorite)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", newfavorite.userID);
+        param.Add("mangaID", newfavorite.mangaID);
+        int kq = int.Parse(Exec_Command("DeleteFavorite", param).ToString());
+        return kq;
+    }
     public static int Login(userInfor user)
     {
         Dictionary<string, object> param = new Dictionary<string, object>();
