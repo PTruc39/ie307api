@@ -96,6 +96,22 @@ public class Database
         return Read_Table("GetTop10Favorite");
     }
 
+    public static DataTable GetCommentByManga(int MangaID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("mangaID", MangaID);
+        return Read_Table("GetCommentByManga", param);
+    }
+
+    public static int CheckFavorite(int MangaID, int userID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("mangaID", MangaID);
+        param.Add("userID", userID);
+        int kq = int.Parse(Exec_Command("CheckFavorite", param).ToString());
+        return kq;
+    }
+
     public static object Exec_Command(string StoredProcedureName, Dictionary<string, object> dic_param = null)
     {
         string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
@@ -165,6 +181,22 @@ public class Database
         param.Add("userID", newfavorite.userID);
         param.Add("mangaID", newfavorite.mangaID);
         int kq = int.Parse(Exec_Command("DeleteFavorite", param).ToString());
+        return kq;
+    }
+    public static int DeleteComment(comments comment)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("commentID", comment.commentID);
+        int kq = int.Parse(Exec_Command("DeleteComment", param).ToString());
+        return kq;
+    }
+    public static int AddComment(comments comment)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", comment.userID);
+        param.Add("mangaID", comment.mangaID);
+        param.Add("comment", comment.comment);
+        int kq = int.Parse(Exec_Command("AddComment", param).ToString());
         return kq;
     }
     public static int Login(userInfor user)

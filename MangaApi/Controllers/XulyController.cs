@@ -110,6 +110,20 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+        [Route("api/user/AddComment")]
+        [HttpPost]
+        public IHttpActionResult AddComment(comments cmt)
+        {
+            try
+            {
+                int kq = Database.AddComment(cmt);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
 
         [Route("api/user/DeleteFavorite")]
         [HttpPost]
@@ -125,7 +139,20 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
-
+        [Route("api/comment/DeleteComment")]
+        [HttpPost]
+        public IHttpActionResult DeleteComment(comments newf)
+        {
+            try
+            {
+                int kq = Database.DeleteComment(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
 
         [Route("api/manga/GetMangaList")]
         [HttpGet]
@@ -159,6 +186,22 @@ namespace MangaApi.Controllers
             }
         }
 
+        [Route("api/comment/GetCommentByManga")]
+        [HttpGet]
+        public IHttpActionResult GetCommentByManga(int MangaID)
+        {
+            try
+            {
+                DataTable tb = Database.GetCommentByManga(MangaID);
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
         [Route("api/userInfor/GetUserByID")]
         [HttpGet]
         public IHttpActionResult GetUserByID(int userID)
@@ -174,6 +217,23 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+
+        [Route("api/checkfavorite")]
+        [HttpGet]
+        public IHttpActionResult CheckFavorite(int MangaID, int userID)
+        {
+            try
+            {
+                int tb = Database.CheckFavorite(MangaID, userID);
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
 
         [Route("api/favorite/GetTop10Favorite")]
         [HttpGet]
