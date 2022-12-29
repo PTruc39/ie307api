@@ -112,6 +112,19 @@ public class Database
         return kq;
     }
 
+    public static DataTable FindManga(string name, string categoryID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("name", name);
+        param.Add("categoryID", categoryID);
+        return Read_Table("FindManga", param);
+    }
+
+    public static DataTable GetBlogList()
+    {
+        return Read_Table("GetBlogList");
+    }
+
     public static object Exec_Command(string StoredProcedureName, Dictionary<string, object> dic_param = null)
     {
         string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
@@ -197,6 +210,16 @@ public class Database
         param.Add("mangaID", comment.mangaID);
         param.Add("comment", comment.comment);
         int kq = int.Parse(Exec_Command("AddComment", param).ToString());
+        return kq;
+    }
+    public static int AddBlog(blogs blog)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", blog.UserID);
+        param.Add("BlogName", blog.BlogName);
+        param.Add("BlogImg", blog.BlogImg);
+        param.Add("BlogContent", blog.BlogContent);
+        int kq = int.Parse(Exec_Command("AddBlog", param).ToString());
         return kq;
     }
     public static int Login(userInfor user)

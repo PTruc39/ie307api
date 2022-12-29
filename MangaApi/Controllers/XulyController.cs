@@ -251,12 +251,58 @@ namespace MangaApi.Controllers
             }
         }
 
+        [Route("api/manga/findmanga")]
+        [HttpGet]
+        public IHttpActionResult FindManga(string name = "", string categoryID = "")
+        {
+            try
+            {
+                DataTable tb = Database.FindManga(name, categoryID);
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
 
         [Route("api/HelloWebApi")]
         [HttpGet]
         public IHttpActionResult HelloWebApi()
         {
             return Ok("Welcome to WebApi!");
+        }
+
+        [Route("api/blog/GetBlogList")]
+        [HttpGet]
+        public IHttpActionResult GetBlogList()
+        {
+            try
+            {
+                DataTable tb = Database.GetBlogList();
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/blog/AddBlog")]
+        [HttpPost]
+        public IHttpActionResult AddBlog(blogs blog)
+        {
+            try
+            {
+                int kq = Database.AddBlog(blog);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
 
 
