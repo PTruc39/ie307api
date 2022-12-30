@@ -110,6 +110,22 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+        [Route("api/follow/AddFollow")]
+        [HttpPost]
+        public IHttpActionResult AddFollow(follow newf)
+        {
+            try
+            {
+                int kq = Database.AddFollow(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+
         [Route("api/user/AddComment")]
         [HttpPost]
         public IHttpActionResult AddComment(comments cmt)
@@ -139,6 +155,39 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+
+
+        [Route("api/follow/DeleteFollow")]
+        [HttpPost]
+        public IHttpActionResult DeleteFollow(follow newf)
+        {
+            try
+            {
+                int kq = Database.DeleteFollow(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/user/DeleteNotify")]
+        [HttpPost]
+        public IHttpActionResult DeleteNotify(favorite newf)
+        {
+            try
+            {
+                int kq = Database.DeleteNotify(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+
         [Route("api/comment/DeleteComment")]
         [HttpPost]
         public IHttpActionResult DeleteComment(comments newf)
@@ -186,7 +235,41 @@ namespace MangaApi.Controllers
             }
         }
 
+
+        [Route("api/user/GetNotifyByUser")]
+        [HttpGet]
+        public IHttpActionResult GetNotifyByUser(int userID)
+        {
+            try
+            {
+                DataTable tb = Database.GetNotifyByUser(userID);
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
         [Route("api/comment/GetCommentByManga")]
+        [HttpGet]
+        public IHttpActionResult GetCommentByManga(int? MangaID = null, int? BlogID = null)
+        {
+            try
+            {
+                DataTable tb = Database.GetCommentByManga(MangaID, BlogID);
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        /*
+         [Route("api/comment/GetCommentByManga")]
         [HttpGet]
         public IHttpActionResult GetCommentByManga(int MangaID)
         {
@@ -201,6 +284,9 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+         
+         */
+
 
         [Route("api/userInfor/GetUserByID")]
         [HttpGet]
