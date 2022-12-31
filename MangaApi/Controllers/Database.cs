@@ -238,4 +238,31 @@ public class Database
         int kq = int.Parse(Exec_Command("AddUser", param).ToString());
         return kq;
     }*/
+    public static int EditUser(userInfor user)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", user.userID);
+        param.Add("userName", user.userName);
+        param.Add("email", user.email);
+        param.Add("password", user.password);
+        int kq = int.Parse(Exec_Command("EditUser", param).ToString());
+        return kq;
+    }
+
+    public static DataTable GetCategoryByMangaID(int MangaID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("MangaID", MangaID);
+        return Read_Table("GetCategoryByMangaID", param);
+    }
+
+    public static int ResetPassword(int userID, string newPassword, string currentPassword)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", userID);
+        param.Add("password", newPassword);
+        param.Add("currentPassword", currentPassword);
+        int kq = int.Parse(Exec_Command("ResetPassword", param).ToString());
+        return kq;
+    }
 }

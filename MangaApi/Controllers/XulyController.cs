@@ -290,20 +290,20 @@ namespace MangaApi.Controllers
             }
         }
 
-        [Route("api/blog/AddBlog")]
-        [HttpPost]
-        public IHttpActionResult AddBlog(blogs blog)
-        {
-            try
-            {
-                int kq = Database.AddBlog(blog);
-                return Ok(kq);
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
+        //[Route("api/blog/AddBlog")]
+        //[HttpPost]
+        //public IHttpActionResult AddBlog(blogs blog)
+        //{
+        //    try
+        //    {
+        //        int kq = Database.AddBlog(blog);
+        //        return Ok(kq);
+        //    }
+        //    catch
+        //    {
+        //        return NotFound();
+        //    }
+        //}
 
 
         /*[Route("api/UpdateUser")]
@@ -321,5 +321,48 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }*/
+        [Route("api/user/EditUser")]
+        [HttpPost]
+        public IHttpActionResult EditUser(userInfor user)
+        {
+            try
+            {
+                int kq = Database.EditUser(user);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+        [Route("api/category/GetCategoryByMangaID")]
+        [HttpGet]
+        public IHttpActionResult GetCategoryByMangaID(int MangaID)
+        {
+            try
+            {
+                DataTable tb = Database.GetCategoryByMangaID(MangaID);
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/user/ResetPassword")]
+        [HttpPost]
+        public IHttpActionResult ResetPassword(int userID, string newPassword, string currentPassword)
+        {
+            try
+            {
+                int kq = Database.ResetPassword(userID, newPassword, currentPassword);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
     }
 }
