@@ -91,17 +91,35 @@ public class Database
         param.Add("userID", userID);
         return Read_Table("GetUserByID", param);
     }
+
+    public static DataTable GetNotifyByUser(int userID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", userID);
+        return Read_Table("GetNotifyByUser ", param);
+    }
+
     public static DataTable GetTop10Favorite()
     {
         return Read_Table("GetTop10Favorite");
     }
 
-    public static DataTable GetCommentByManga(int MangaID)
+    public static DataTable GetCommentByManga(int? MangaID, int? BlogID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("mangaID", MangaID);
+        param.Add("blogID", BlogID);
+        return Read_Table("GetCommentByManga", param);
+    }
+
+    /*
+     public static DataTable GetCommentByManga(int MangaID)
     {
         Dictionary<string, object> param = new Dictionary<string, object>();
         param.Add("mangaID", MangaID);
         return Read_Table("GetCommentByManga", param);
     }
+     */
 
     public static int CheckFavorite(int MangaID, int userID)
     {
@@ -196,6 +214,33 @@ public class Database
         int kq = int.Parse(Exec_Command("DeleteFavorite", param).ToString());
         return kq;
     }
+
+    public static int DeleteNotify(favorite newfavorite)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", newfavorite.userID);
+        param.Add("mangaID", newfavorite.mangaID);
+        int kq = int.Parse(Exec_Command("DeleteNotify", param).ToString());
+        return kq;
+    }
+
+    public static int AddFollow(follow newfollow)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", newfollow.userID);
+        param.Add("mangaID", newfollow.mangaID);
+        int kq = int.Parse(Exec_Command("AddFollow", param).ToString());
+        return kq;
+    }
+    public static int DeleteFollow(follow newfollow)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", newfollow.userID);
+        param.Add("mangaID", newfollow.mangaID);
+        int kq = int.Parse(Exec_Command("DeleteFollow", param).ToString());
+        return kq;
+    }
+
     public static int DeleteComment(comments comment)
     {
         Dictionary<string, object> param = new Dictionary<string, object>();
@@ -209,6 +254,7 @@ public class Database
         param.Add("userID", comment.userID);
         param.Add("mangaID", comment.mangaID);
         param.Add("comment", comment.comment);
+        param.Add("blogID", comment.blogID);
         int kq = int.Parse(Exec_Command("AddComment", param).ToString());
         return kq;
     }
