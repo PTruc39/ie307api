@@ -188,11 +188,11 @@ namespace MangaApi.Controllers
 
         [Route("api/comment/GetCommentByManga")]
         [HttpGet]
-        public IHttpActionResult GetCommentByManga(int MangaID)
+        public IHttpActionResult GetCommentByManga(int? MangaID, int? BlogID)
         {
             try
             {
-                DataTable tb = Database.GetCommentByManga(MangaID);
+                DataTable tb = Database.GetCommentByManga(MangaID,BlogID);
 
                 return Ok(tb);
             }
