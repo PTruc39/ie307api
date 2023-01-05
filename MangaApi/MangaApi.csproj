@@ -170,6 +170,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\blogs.cs" />
+    <Compile Include="Models\chapter.cs" />
     <Compile Include="Models\comments.cs" />
     <Compile Include="Models\favorite.cs" />
     <Compile Include="Models\follow.cs" />
