@@ -5,10 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using MangaApi.Models;
 
 namespace MangaApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class XulyController : ApiController
     {
         [Route("api/category/GetCategory")]
@@ -110,6 +113,22 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+        [Route("api/follow/AddFollow")]
+        [HttpPost]
+        public IHttpActionResult AddFollow(follow newf)
+        {
+            try
+            {
+                int kq = Database.AddFollow(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+
         [Route("api/user/AddComment")]
         [HttpPost]
         public IHttpActionResult AddComment(comments cmt)
@@ -139,6 +158,39 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+
+
+        [Route("api/follow/DeleteFollow")]
+        [HttpPost]
+        public IHttpActionResult DeleteFollow(follow newf)
+        {
+            try
+            {
+                int kq = Database.DeleteFollow(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/user/DeleteNotify")]
+        [HttpPost]
+        public IHttpActionResult DeleteNotify(favorite newf)
+        {
+            try
+            {
+                int kq = Database.DeleteNotify(newf);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+
         [Route("api/comment/DeleteComment")]
         [HttpPost]
         public IHttpActionResult DeleteComment(comments newf)
@@ -186,13 +238,14 @@ namespace MangaApi.Controllers
             }
         }
 
-        [Route("api/comment/GetCommentByManga")]
+
+        [Route("api/user/GetNotifyByUser")]
         [HttpGet]
-        public IHttpActionResult GetCommentByManga(int? MangaID, int? BlogID)
+        public IHttpActionResult GetNotifyByUser(int userID)
         {
             try
             {
-                DataTable tb = Database.GetCommentByManga(MangaID,BlogID);
+                DataTable tb = Database.GetNotifyByUser(userID);
 
                 return Ok(tb);
             }
@@ -201,6 +254,42 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+
+        [Route("api/comment/GetCommentByManga")]
+        [HttpGet]
+        public IHttpActionResult GetCommentByManga(int? MangaID = null, int? BlogID = null)
+        {
+            try
+            {
+                DataTable tb = Database.GetCommentByManga(MangaID, BlogID);
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        /*
+         [Route("api/comment/GetCommentByManga")]
+        [HttpGet]
+        public IHttpActionResult GetCommentByManga(int MangaID)
+        {
+            try
+            {
+                DataTable tb = Database.GetCommentByManga(MangaID);
+
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+         
+         */
+
 
         [Route("api/userInfor/GetUserByID")]
         [HttpGet]
@@ -290,20 +379,35 @@ namespace MangaApi.Controllers
             }
         }
 
-        //[Route("api/blog/AddBlog")]
-        //[HttpPost]
-        //public IHttpActionResult AddBlog(blogs blog)
-        //{
-        //    try
-        //    {
-        //        int kq = Database.AddBlog(blog);
-        //        return Ok(kq);
-        //    }
-        //    catch
-        //    {
-        //        return NotFound();
-        //    }
-        //}
+        [Route("api/blog/AddBlog")]
+        [HttpPost]
+        public IHttpActionResult AddBlog(blogs blog)
+        {
+            try
+            {
+                int kq = Database.AddBlog(blog);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/manga/AddChapter")]
+        [HttpPost]
+        public IHttpActionResult AddChapter(chapter chap)
+        {
+            try
+            {
+                int kq = Database.AddChapter(chap);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
 
 
         /*[Route("api/UpdateUser")]
