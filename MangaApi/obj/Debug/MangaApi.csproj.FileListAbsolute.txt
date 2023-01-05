@@ -83,3 +83,6 @@ C:\Users\TGDD\source\repos\ie307api\MangaApi\bin\Microsoft.CodeDom.Providers.Dot
 C:\Users\TGDD\source\repos\ie307api\MangaApi\obj\Debug\MangaApi.csproj.CopyComplete
 C:\Users\TGDD\source\repos\ie307api\MangaApi\obj\Debug\MangaApi.dll
 C:\Users\TGDD\source\repos\ie307api\MangaApi\obj\Debug\MangaApi.pdb
+C:\Users\TGDD\source\repos\ie307api\MangaApi\bin\System.Web.Cors.dll
+C:\Users\TGDD\source\repos\ie307api\MangaApi\bin\System.Web.Http.Cors.dll
+C:\Users\TGDD\source\repos\ie307api\MangaApi\bin\System.Web.Http.Cors.xml

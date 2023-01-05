@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Cors;
 using MangaApi.Models;
 
 /// <summary>
@@ -12,6 +13,7 @@ using MangaApi.Models;
 /// </summary>
 public class Database
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public static DataTable Read_Table(string StoredProcedureName, Dictionary<string, object> dic_param = null)
     {
         string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
@@ -266,6 +268,14 @@ public class Database
         param.Add("BlogImg", blog.BlogImg);
         param.Add("BlogContent", blog.BlogContent);
         int kq = int.Parse(Exec_Command("AddBlog", param).ToString());
+        return kq;
+    }
+    public static int AddChapter(chapter chap)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("MangaID", chap.MangaID);
+        param.Add("ChapterName", chap.ChapterName);
+        int kq = int.Parse(Exec_Command("AddChapter", param).ToString());
         return kq;
     }
     public static int Login(userInfor user)
