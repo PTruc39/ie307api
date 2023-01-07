@@ -321,4 +321,25 @@ public class Database
         int kq = int.Parse(Exec_Command("ResetPassword", param).ToString());
         return kq;
     }
+    /*MANGA API HERE*/
+    public static int EditManga(manga mg)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("MangaID", mg.MangaID);
+        param.Add("MangaName", mg.MangaName);
+        param.Add("MangaImage", mg.MangaImage);
+        param.Add("Description", mg.Description);
+        int kq = int.Parse(Exec_Command("EditManga", param).ToString());
+        return kq;
+    }
+
+    public static int AddManga(manga mg)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("MangaName", mg.MangaName);
+        param.Add("MangaImage", mg.MangaImage);
+        param.Add("Description", mg.Description);
+        int kq = int.Parse(Exec_Command("AddManga", param).ToString());
+        return kq;
+    }
 }

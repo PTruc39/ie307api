@@ -468,5 +468,37 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+
+
+        /*MANGA API HERE*/
+        [Route("api/manga/EditManga")]
+        [HttpPost]
+        public IHttpActionResult EditManga(manga mg)
+        {
+            try
+            {
+                int kq = Database.EditManga(mg);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/manga/AddManga")]
+        [HttpPost]
+        public IHttpActionResult AddManga(manga mg)
+        {
+            try
+            {
+                int kq = Database.AddManga(mg);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
     }
 }
