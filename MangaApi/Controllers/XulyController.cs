@@ -500,5 +500,67 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+
+        // API THÊM XÓA SỬA list
+        [Route("api/list/AddList")]
+        [HttpPost]
+        public IHttpActionResult AddList(list lst)
+        {
+            try
+            {
+                int kq = Database.AddList(lst);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/list/EditList")]
+        [HttpPost]
+        public IHttpActionResult EditList(list lst)
+        {
+            try
+            {
+                int kq = Database.EditList(lst);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/list/DeleteList")]
+        [HttpPost]
+        public IHttpActionResult DeleteList(int listID)
+        {
+            try
+            {
+                int kq = Database.DeleteList(listID);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        // API SỬA chapter
+        [Route("api/chapter/EditChapter")]
+        [HttpPost]
+        public IHttpActionResult EditChapter(chapter chapter)
+        {
+            try
+            {
+                int kq = Database.EditChapter(chapter);
+                return Ok(kq);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
     }
 }

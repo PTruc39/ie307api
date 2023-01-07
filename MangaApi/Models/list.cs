@@ -5,10 +5,10 @@ using System.Web;
 
 namespace MangaApi.Models
 {
-    public class chapter
+    public class list
     {
+        public int ListID { get; set; }
+        public string ListImage { get; set; }
         public int ChapterID { get; set; }
-        public string ChapterName { get; set; }
-        public int MangaID { get; set; }
     }
 }

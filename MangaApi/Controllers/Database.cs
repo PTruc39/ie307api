@@ -342,4 +342,44 @@ public class Database
         int kq = int.Parse(Exec_Command("AddManga", param).ToString());
         return kq;
     }
+
+    // API THÊM XÓA SỬA list
+    public static int AddList(list lst)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("ListImage", lst.ListImage);
+        param.Add("ChapterID", lst.ChapterID);
+        int kq = int.Parse(Exec_Command("AddList", param).ToString());
+        return kq;
+    }
+
+    public static int EditList(list lst)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("ListID", lst.ListID);
+        param.Add("ListImage", lst.ListImage);
+        param.Add("ChapterID", lst.ChapterID);
+        int kq = int.Parse(Exec_Command("EditList", param).ToString());
+        return kq;
+    }
+
+    public static int DeleteList(int listID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("ListID", listID);
+        int kq = int.Parse(Exec_Command("DeleteList", param).ToString());
+        return kq;
+    }
+
+    // API SỬA chapter
+
+    public static int EditChapter(chapter chapter)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("ChapterID", chapter.ChapterID);
+        param.Add("ChapterName", chapter.ChapterName);
+        param.Add("MangaID", chapter.MangaID);
+        int kq = int.Parse(Exec_Command("EditChapter", param).ToString());
+        return kq;
+    }
 }
