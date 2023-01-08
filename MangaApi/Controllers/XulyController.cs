@@ -70,6 +70,21 @@ namespace MangaApi.Controllers
                 return NotFound();
             }
         }
+        [Route("api/follow/GetFollowByUser")]
+        [HttpGet]
+        public IHttpActionResult GetFollowByUser(int userID)
+        {
+            try
+            {
+                DataTable tb = Database.GetFollowByUser(userID);
+                return Ok(tb);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+        
         [Route("api/user/AddUser")]
         [HttpPost]
         public IHttpActionResult AddUser(userInfor user)

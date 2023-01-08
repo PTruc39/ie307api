@@ -75,6 +75,13 @@ public class Database
         param.Add("userID", userID);
         return Read_Table("GetFavoriteByUser", param);
     }
+
+    public static DataTable GetFollowByUser(int userID)
+    {
+        Dictionary<string, object> param = new Dictionary<string, object>();
+        param.Add("userID", userID);
+        return Read_Table("GetFollowByUser", param);
+    }
     public static DataTable GetMangaList()
     {
         return Read_Table("GetMangaList");
